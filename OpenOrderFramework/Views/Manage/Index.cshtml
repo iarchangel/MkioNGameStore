@@ -1,0 +1,53 @@
+@model OpenOrderFramework.Models.IndexViewModel
+@{
+    ViewBag.Title = "Управление аккаунтом";
+}
+
+<h2>@ViewBag.Title.</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @if (Model.HasPassword) {
+                @Html.ActionLink("Сменить пароль", "ChangePassword")
+            }
+            else {
+                @Html.ActionLink("Выберите пароль", "SetPassword")
+            }
+        </p>
+        <p>
+            Номер телефона: @(Model.PhoneNumber ?? "Нет") [
+            @if (Model.PhoneNumber != null) {
+                @Html.ActionLink("Сменить", "AddPhoneNumber")
+                @: &nbsp;|&nbsp;
+                @Html.ActionLink("Удалить", "RemovePhoneNumber")
+            }
+            else {
+                @Html.ActionLink("Добавить", "AddPhoneNumber")
+            }
+            ]
+        </p>
+        <p>
+            Подключенные аккаунты: @Model.Logins.Count
+            @Html.ActionLink("[Управление]", "ManageLogins")
+        </p>
+        <p>
+            Двухфакторная авторизация: @(Model.TwoFactor)
+            @if (Model.TwoFactor) {
+                @Html.ActionLink("[Отключить]", "DisableTFA")
+            }
+            else {
+                @Html.ActionLink("[Включить]", "EnableTFA")
+            }
+        </p>
+        <p>
+            Запомнить браузер?: @Model.BrowserRemembered
+            @if (Model.BrowserRemembered) {
+                @Html.ActionLink("[Забыть]", "ForgetBrowser")
+            }
+            else {
+                @Html.ActionLink("[Запомнить]", "RememberBrowser")
+            }
+        </p>
+    </div>
+</div>

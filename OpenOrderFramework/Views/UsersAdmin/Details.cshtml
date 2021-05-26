@@ -1,0 +1,45 @@
+﻿@model OpenOrderFramework.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детали.</h2>
+
+<div>
+    <h4>Пользователь</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+</div>
+<h4>Список ролей этого пользователя</h4>
+@if (ViewBag.RoleNames.Count == 0)
+{
+    <hr />
+    <p>Этому пользователю не назначена ни одна роль.</p>
+}
+
+<table class="table">
+
+    @foreach (var item in ViewBag.RoleNames)
+    {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Обратно", "Index")
+</p>
+
+
+

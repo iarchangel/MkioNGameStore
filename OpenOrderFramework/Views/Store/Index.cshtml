@@ -1,0 +1,15 @@
+﻿@model IEnumerable<OpenOrderFramework.Models.Catagorie>
+@{
+    ViewBag.Title = "Магазин";
+}
+<h3>Просмотр жанров</h3>
+
+<p>
+    Выберите из @Model.Count() жанров:
+</p>
+<ul>
+    @foreach (var catagorie in Model)
+    {
+        <li>@Html.ActionLink(catagorie.Name, "Browse", new { catagorie = catagorie.Name })</li>
+    }
+</ul>

@@ -1,0 +1,31 @@
+﻿@model OpenOrderFramework.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>Удалить.</h2>
+
+<h3>Вы уверены что хотите удалить этого пользователя?</h3>
+<div>
+    <h4>Пользователь.</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index")
+        </div>
+    }
+</div>

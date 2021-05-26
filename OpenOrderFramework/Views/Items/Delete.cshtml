@@ -1,0 +1,56 @@
+﻿@model OpenOrderFramework.Models.Item
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>Удалить</h2>
+
+<h3>Уверены, что  хотите удалить?</h3>
+<div>
+    <h4>Товар</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagorie.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagorie.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemPictureUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemPictureUrl)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Обратно", "Index")
+        </div>
+    }
+</div>

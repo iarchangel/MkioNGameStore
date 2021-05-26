@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Создать аккаунт";
+}
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-8">
+
+        <h2>@ViewBag.Title.</h2>
+        @if (Request.IsAuthenticated)
+        {
+
+            <p>
+                Вы вошли, как гость
+            </p>
+            <p>
+                Пожалуйста  выйдите и создайте аккаунт.
+            </p>
+
+
+
+
+            using (Html.BeginForm("LogOffAndRegister", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Benefits of signing up.</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">1</span>
+                                Ваша информация будет автоматически заполнена, когда вы сделаете заказ в будущем.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">2</span>
+                                У вас будет более удобный индивидуальный подход.
+                            </li>
+                            <li class="list-group-item"><a href="javascript:document.getElementById('logoutForm').submit()">Выйдите из системы и создайте свою учетную запись.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <ul class="list-group">
+                <li class="list-group-item"><span class="badge">1</span>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li class="list-group-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+        }
+    </div>
+</div>
